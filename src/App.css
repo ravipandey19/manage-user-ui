@@ -40,7 +40,7 @@
 
 .site-layout-content {
   min-height: 280px;
-  padding: 24px;
+  padding: 30px;
 }
 
 .mb-50 {
@@ -57,4 +57,9 @@ h4 {
 
 .ant-card-head {
   background: beige !important;
+}
+
+:where(.css-dev-only-do-not-override-sk7ap8).ant-menu-dark.ant-menu-horizontal>.ant-menu-item-selected,
+:where(.css-dev-only-do-not-override-sk7ap8).ant-menu-dark.ant-menu-horizontal>.ant-menu-submenu-selected {
+  background: transparent !important;
 }

@@ -1,11 +1,24 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import type { MenuProps } from 'antd';
 import './App.css';
 import AddUser from './components/AddUser';
 import UserDetails from './components/UserDetials';
 
 const { Header, Content, Footer } = Layout;
+
+const items: MenuProps['items'] = [
+  {
+    label: (
+      <a href="/" rel="noopener noreferrer">
+        Manage User
+      </a>
+    ),
+    key: 'home',
+    icon: <UserOutlined />,
+  },
+];
 
 function App() {
 
@@ -21,11 +34,7 @@ function App() {
           <Menu
             theme="dark"
             mode="horizontal"
-            items={[{
-              label: 'Manage User',
-              key: 'user',
-              icon: <UserOutlined />,
-            }]}
+            items={items}
           />
         </Header>
         <Content style={{ padding: '0 50px' }}>

@@ -1,4 +1,4 @@
-import { Button, List, Space, Avatar, Card } from 'antd';
+import { Button, List, Space, Avatar, Card, Empty } from 'antd';
 import { UserOutlined, UserAddOutlined } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from "../hooks/redux-hooks";
 import { fetchUserData } from '../store/user-actions';
@@ -17,7 +17,7 @@ const UserDetails = () => {
 
     useEffect(() => {
         dispatch(fetchUserData())
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         if (all_user_list.length > 0) setInitLoading(false);
@@ -80,7 +80,7 @@ const UserDetails = () => {
             </div>
             {all_user_list.length > 0 ?
                 active === 'list' ? listView() : gridView()
-                : 'No data Found'}
+                : <Empty description={false} />}
         </>
     );
 }
