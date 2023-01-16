@@ -8,15 +8,3 @@ export interface UserModel {
 export interface UserArrayModel {
     all_user_list: UserModel[],
 }
-
-export interface DataType {
-    name: {
-        first: string;
-        last: string;
-    };
-    gender: string;
-    email: string;
-    login: {
-        uuid: string;
-    };
-}

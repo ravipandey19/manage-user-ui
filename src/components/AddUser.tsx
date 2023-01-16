@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Form, Input, FloatButton } from 'antd';
+import { useAppDispatch, useAppSelector } from "../hooks/redux-hooks";
+import { addUserData } from '../store/user-actions';
 import type { FormInstance } from 'antd/es/form';
 import { HomeOutlined } from '@ant-design/icons';
 import './UserDetails.css';
@@ -17,28 +19,38 @@ const tailLayout = {
 const AddUser = () => {
 
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const formRef = React.useRef<FormInstance>(null);
 
     const onFinish = (values: any) => {
-        console.log(values);
+        dispatch(addUserData(values));
     };
 
     const onReset = () => {
         formRef.current?.resetFields();
     };
 
-    const onFill = () => {
-        formRef.current?.setFieldsValue({ note: 'Hello world!', gender: 'male' });
+    const validation = (e: any) => {
+        e.target.value = e.target.value.replace(/\d/g, "");
     };
 
     return (
         <>
             <Form {...layout} ref={formRef} name="control-ref" onFinish={onFinish} >
                 <Form.Item label="First Name" name="first_name" rules={[{ required: true }]}>
-                    <Input placeholder="First name" autoComplete='off' />
+                    <Input placeholder="First name" autoComplete='off' maxLength={100}
+                        showCount
+                        onKeyUp={(e: any) => validation(e)}
+                        onKeyDown={(e: any) => validation(e)}
+                        onPaste={(e: any) => validation(e)}
+                    />
                 </Form.Item>
                 <Form.Item label="Last Name" name="last_name" rules={[{ required: true }]}>
-                    <Input placeholder="Last Name" autoComplete='off' />
+                    <Input placeholder="Last Name" autoComplete='off' maxLength={100} showCount
+                        onKeyUp={(e: any) => validation(e)}
+                        onKeyDown={(e: any) => validation(e)}
+                        onPaste={(e: any) => validation(e)}
+                    />
                 </Form.Item>
                 <Form.Item label="Email Id" name="emailid" rules={[{ required: true }]}>
                     <Input type="email" placeholder="User email id" autoComplete='off' />
