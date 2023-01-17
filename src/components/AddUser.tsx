@@ -32,23 +32,23 @@ const AddUser = () => {
 
     const validation = (e: any) => {
         e.target.value = e.target.value.replace(/\d/g, "");
+        formRef.current?.setFieldValue(e.target.id, e.target.value)
     };
 
     return (
         <>
-            <Form {...layout} ref={formRef} name="control-ref" onFinish={onFinish} >
+            <Form {...layout} data-testid="add-user-form" ref={formRef} name="control-ref" onFinish={onFinish} >
                 <Form.Item label="First Name" name="first_name" rules={[{ required: true }]}>
-                    <Input placeholder="First name" autoComplete='off' maxLength={100}
+                    <Input placeholder="First name" id={'first_name'} autoComplete='off' maxLength={100}
                         showCount
                         onKeyUp={(e: any) => validation(e)}
-                        onKeyDown={(e: any) => validation(e)}
                         onPaste={(e: any) => validation(e)}
+                        
                     />
                 </Form.Item>
                 <Form.Item label="Last Name" name="last_name" rules={[{ required: true }]}>
-                    <Input placeholder="Last Name" autoComplete='off' maxLength={100} showCount
+                    <Input placeholder="Last Name" id={'last_name'} autoComplete='off' maxLength={100} showCount
                         onKeyUp={(e: any) => validation(e)}
-                        onKeyDown={(e: any) => validation(e)}
                         onPaste={(e: any) => validation(e)}
                     />
                 </Form.Item>
